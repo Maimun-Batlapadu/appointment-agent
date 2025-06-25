@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "just-ratio-431800-i2",
+  "private_key_id": "68e201b91162433ba420ef2e4482afb7c4475981",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/foFTXwyIM5hE\ngfxi+LwoJKDhNAixEXuzXXv8lQhMuppSocJbhI/Pl+cldKmX/8DKO9TVHUg/SyrK\nbBLYz0WwX6VmG9e2VIzBN6C/gHpbhDcNVTA6Oez/EgKTs3YxZMpdFw85ECYILViF\nly/huTHptzp6UvPMhufgloZo8wUDzvugiaMHoIl6tWa9f41IsvmLsyUDTkakdjS+\nY43r/APMpa/pzezd10Hb/zsDsFd3rvQMi9iAD3Cq7wUFdkwEtT3gNF7IzUG3POZS\nUciQRZSH/KxoiUtSHQvkKmxjXZd6Z7vVJrPhEb9XC+rZx/dz63Psl8Xd/KuIxG21\n6UPl4pm9AgMBAAECggEALIzDDBEZEofEVS3TeHgLGCC7X+Ex43XgjDBDw9WtLmKc\nO/yfgZiTt3VMxHlBalgI81Oblm//SqBTZm/hq5h/C0MZMOnp06SUcXAeYOcEME3Q\nW/T1aRpoUUgQmumdpeyfqqwOcdVYr77S8RNlA5PI8albvLEXQH4jLGwAfaKKCGIk\nIJDNQyaOLnMhxZKCcNkWxMc/s5NN4u1U+z4ozbAOqE7fynqwsLLDFBZodoQUX/qN\nx8lHzSCS6198gmA//AqkK7hA5+Mqd91AGMKE7NossBbm+IZtCuQHAOpQVgYwHHUL\nc9jn/HOtlcx4MDjd3BehOCwswgda95Qa8pzy0ne6KQKBgQDoudaW5KleLszRePzr\nYY0XWuNpt2I/z0IjoM+PrlTq4qwlF+fH2ysqTvm2S0YEx6RYYnsKPrnf9E65LblP\ncNd1ggs2lTkqQvpC3N7BNO55itLRvcm+xd4Jr5NVaeZAjYPLxAJty8YRujGJjyqB\n2SNu9HFk3Rb9ZRRoNDLY/x+CpQKBgQDSpRERiRelC0kAtvqO35IfDu6kqWpWeXkx\n2ftFPv59djMmEBQfVk5r96qZ9z2GD7GWzU25ZhhIlAfu5J3JwI5l489XvcZ/v2K0\nar9muGuz0/zRIqre1BDv9quHJVj/NaQORlphL3TjxmIipsOwnYoR6OKNAgUu8+eo\nAV0iqFwHOQKBgFeLWNLIT4HzXu7JcXLl7lpDwVpKNrZEM+ANJScqcB0viYwmkvUW\nWAWBUeQmKr+vjf4Fhb1T3T4Gu/pi3dupWhOFCMzOk4N3UIcIaO8LB05HT4jAuPx/\nmEfSeTzfKlNMKLDlGfjNd8PBY9MYPOg9k1uwrls/498MQAH26M3CIstVAoGAEvKE\nGYayWMcuFuFeolFb7G1EbA1NImAk1aYc4vqqm5BxQ2A43yS9Qxrw/o5tu0xYFg97\niUy0rHqcSBHKW6Z1aJbYRLUuULlfYIkllFDMZ02PNSSgKBD9QQh4H1ztp28kxZ/w\na0OAiSiEFUfY3F8fV0MSdcqTush3svYEcaShOokCgYEAszTTbOK5UpVEy8XAQs2d\nxigV/zOabKhKDmDmugufuJKHc7/bD+jUlA8n4H3/5ydl9/VuhaszbPZtDOg1FWPR\nHrjXFZub6rUvPdq7LSXiTGrUXpSMU5QdJOaV3V9nzWPxcI/X0wOYUh4RWCgO/4BN\nnj7km9LxjnELfgmAi/Fc+b0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "appointment-agent-sa@just-ratio-431800-i2.iam.gserviceaccount.com",
+  "client_id": "115744853812683398476",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/appointment-agent-sa%40just-ratio-431800-i2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
