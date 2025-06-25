@@ -25,12 +25,20 @@ if submitted:
 
     response = requests.post(url, json=payload)
 
-    if response.status_code == 200:
-        data = response.json()
-        st.success(f"✅ Event Booked!\nEvent ID: {data.get('eventId')}\nStatus: {data.get('status')}")
+    if response.ok:
+        result = response.json()
+        st.success(f"✅ Event booked successfully!\n\n**Status**: {result.get('status')}\n**Event ID**: {result.get('eventId')}")
     else:
         st.error(f"❌ Failed to book the event. Status Code: {response.status_code}")
-        st.write(response.json())
+
+    # Try to display error details
+        try:
+            error_data = response.json()
+            st.write(error_data)  # Will work if it's JSON
+        except requests.exceptions.JSONDecodeError:
+        # Fallback for plain text error
+            st.write(response.text)
+
 
 st.title("📅 Appointment Booking Chat")
 
@@ -58,3 +66,4 @@ if user_message:
 
     else:
         st.write("👋 Try typing something like: 'Book a call tomorrow at 3 PM'.")
+

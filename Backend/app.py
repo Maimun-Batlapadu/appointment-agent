@@ -1,69 +1,65 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-from datetime import datetime, timedelta
+from googleapiclient.errors import HttpError
 
-app = FastAPI()
+# 1️⃣ SCOPES and SERVICE_ACCOUNT setup
+SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
+SERVICE_ACCOUNT_FILE = "appointment-agent-sa.json"
 
-# A simple test route
-@app.get("/")
-def read_root():
-    return {"status": "Backend is working"}
-# --------------------------------------------------
-# STEP: Connect to Google Calendar
-# --------------------------------------------------
-SERVICE_ACCOUNT_FILE = "appointment-agent-sa.json"  # <-- Name of your JSON file
-SCOPES = ["https://www.googleapis.com/auth/calendar"]
-
-# Create Credentials
-creds = service_account.Credentials.from_service_account_file(
+# 2️⃣ Create the credentials and service
+credentials = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES
 )
 
-# Build the Service
-calendar_service = build("calendar", "v3", credentials=creds)
+calendar_service = build("calendar", "v3", credentials=credentials)
 
-CALENDAR_ID = "maimunbatlapadu123@gmail.com"  # Replace with your actual calendar email
-from typing import List
+# 3️⃣ Initialize your app
+app = FastAPI()
+@app.get("/")
+def root():
+    return {"message": "Hello, your Calendar app is running!"}
 
-# Route to List Upcoming Events
-@app.get("/events")
-def list_events():
-    now = datetime.utcnow().isoformat() + "Z"  # Current time in UTC
-    events_result = calendar_service.events().list(
-        calendarId=CALENDAR_ID,
-        timeMin=now,
-        maxResults=5,
-        singleEvents=True,
-        orderBy="startTime",
-    ).execute()
-    events = events_result.get("items", [])
 
-    results = []
-    for event in events:
-        results.append({
-            "summary": event.get("summary", "No title"),
-            "start": event["start"].get("dateTime", event["start"].get("date")),
-            "end": event["end"].get("dateTime", event["end"].get("date")),
-        })
-    return results
-from fastapi import Request
 
+# 4️⃣ EventRequest Model
+class EventRequest(BaseModel):
+    summary: str
+    start: str
+    end: str
+
+
+# 5️⃣ Route for booking
 @app.post("/book")
-def book_event(data: dict):
-    summary = data.get("summary")
-    start_time = data.get("start")
-    end_time = data.get("end")
+def book_event(event: EventRequest):
+    """Books an event in the connected Google Calendar."""
+    try:
+        event_body = {
+            "summary": event.summary,
+            "start": {"dateTime": event.start, "timeZone": "UTC"},
+            "end": {"dateTime": event.end, "timeZone": "UTC"}
+        }
 
-    event = {
-        "summary": summary,
-        "start": {"dateTime": start_time, "timeZone": "Asia/Kolkata"},
-        "end": {"dateTime": end_time, "timeZone": "Asia/Kolkata"},
-    }
+        created_event = calendar_service.events().insert(
+            calendarId='primary',
+            body=event_body
+        ).execute()
 
-    created_event = calendar_service.events().insert(
-        calendarId=CALENDAR_ID, body=event
-    ).execute()
+        return {
+            "status": "ok",
+            "eventId": created_event.get("id"),
+            "htmlLink": created_event.get("htmlLink")
+        }
 
-    return {"status": "Booked", "eventId": created_event.get("id")}
+    except HttpError as http_err:
+        raise HTTPException(status_code=500, detail=f"Google Calendar error: {http_err}")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+
+
+# 6️⃣ Other Routes (optional)
+@app.get("/")
+def root():
+    return {"message": "Hello, your Calendar app is running!"}
